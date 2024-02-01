@@ -15,6 +15,8 @@ Learn how to communicate with the server.
     - [Install](#install)
     - [Setup React Query](#setup-react-query)
     - [First Query](#first-query)
+      - [Query Key](#query-key)
+      - [Query Function](#query-function)
     - [Error Handling](#error-handling)
 
 ## HTTP Methods
@@ -148,8 +150,13 @@ const result = useQuery({
 console.log(result);
 ```
 
-- **Query Key** - 提供的唯一的将在内部使用的 key，以便在整个应用程序中重新获取、缓存和共享查询。(The unique key you provide is used internally for refetching, caching, and sharing your queries throughout your application.)
-- **Query Function** - 查询函数可以是任何返回 promise 的函数。返回的 promise 要么能解析数据，要么会出错。(A query function can be literally any function that returns a promise. The promise that is returned should either resolve the data or throw an error.)
+#### Query Key
+
+提供的唯一的将在内部使用的 key，以便在整个应用程序中重新获取、缓存和共享 queries。(The unique key you provide is used internally for refetching, caching, and sharing your queries throughout your application.)
+
+#### Query Function
+
+query function 可以是任何返回 promise 的函数。返回的 promise 要么能解析数据，要么会出错。(A query function can be literally any function that returns a promise. The promise that is returned should either resolve the data or throw an error.)
 
 ### Error Handling
 
