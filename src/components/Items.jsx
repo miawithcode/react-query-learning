@@ -1,26 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { useFetchTasks } from '../reactQueryCustomHooks';
 import SingleItem from './SingleItem';
-import authFetch from '../utils';
 
 const Items = () => {
-  const { isPending, data, isError, error } = useQuery({
-    queryKey: ['tasks'],
-    queryFn: async () => {
-      const { data } = await authFetch.get('/');
-      return data;
-    },
-  });
+  const {isPending, data, isError} = useFetchTasks();
 
   if (isPending) {
     return <p>Loading...</p>;
   }
 
-  // if(isError) {
-  //   return <p>There was an error...</p>;
-  // }
-
-  if(error) {
-    return <p>{error.message}</p>;
+  if(isError) {
+    return <p>There was an error...</p>;
   }
 
   return (
