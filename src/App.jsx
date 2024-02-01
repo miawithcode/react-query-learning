@@ -7,10 +7,10 @@ import Form from './components/Form';
 import Items from './components/Items';
 
 const defaultItems = [
-  { id: nanoid(), title: 'walk the dog', idDone: false },
-  { id: nanoid(), title: 'wash dishes', idDone: false },
-  { id: nanoid(), title: 'drink coffee', idDone: true },
-  { id: nanoid(), title: 'take a nap', idDone: false },
+  { id: nanoid(), title: 'walk the dog', isDone: false },
+  { id: nanoid(), title: 'wash dishes', isDone: false },
+  { id: nanoid(), title: 'drink coffee', isDone: true },
+  { id: nanoid(), title: 'take a nap', isDone: false },
 ];
 
 const App = () => {

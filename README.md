@@ -1,6 +1,101 @@
-# React Query Learning
+<h2>Table Of Content</h2>
 
-用 React Query 管理数据
+- [HTTP Methods](#http-methods)
+  - [GET](#get)
+  - [POST](#post)
+  - [PATCH](#patch)
+  - [DELETE](#delete)
+- [API Documentation](#api-documentation)
+- [React Query](#react-query)
+  - [Install](#install)
+  - [Setup React Query](#setup-react-query)
+  - [First Query](#first-query)
+
+## HTTP Methods
+
+HTTP (Hypertext Transfer Protocol) methods 定义了可在网络服务器上执行的获取、修改或删除信息的操作类型。最常用的 HTTP 方法是 GET、POST、PATCH 和 DELETE。
+- GET 检索（retrieve） 数据
+- POST 发送待处理数据
+- PATCH 更新或替换现有数据
+- DELETE 删除数据
+
+这里用 axios 做示范，但是同样也能用 `fetch()`。
+
+### GET
+
+GET: 这个 HTTP 方法用于从服务器中检索数据。当客户端向服务器发送 GET 请求时，服务器将返回一个包含所请求数据的响应。这种方法通常用于从数据库检索信息、读取网页或下载文件。HTTP GET 方法是网络浏览器从服务器检索数据的**默认方法**，因为它是一种安全高效的资源请求方式。
+
+```jsx
+// HTTP GET example
+try {
+  const response = await axios.get('/api/data');
+  console.log(response.data);
+} catch (error) {
+  console.error(error);
+}
+```
+
+```jsx
+// HTTP GET example
+axios
+  .get('/api/data')
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+### POST
+
+POST: POST 方法用于向服务器发送数据，以创建或更新资源。当客户端向服务器发送 POST 请求时，服务器将处理该请求并创建新资源或更新现有资源。这种方法通常用于网络表单，用户输入信息后，这些信息会被发送到服务器进行处理。
+
+```jsx
+// HTTP POST example
+try {
+  const response = await axios.post('/api/data', { name: 'John', age: 30 });
+  console.log(response.data);
+} catch (error) {
+  console.error(error);
+}
+```
+
+### PATCH
+
+PATCH: PATCH 方法与 POST 方法类似，但它只用于更新资源的一部分。当客户端向服务器发送 PATCH 请求时，服务器将使用请求中提供的新数据更新资源。这种方法通常在 REST API 中用于更新资源的特定属性，相当于 Edit。
+
+```jsx
+// HTTP PATCH example
+try {
+  const response = await axios.patch('/api/data/1', { age: 31 });
+  console.log(response.data);
+} catch (error) {
+  console.error(error);
+}
+```
+
+### DELETE
+
+DELETE: DELETE 方法用于从服务器上删除资源。当客户端向服务器发送 DELETE 请求时，服务器将删除存在的资源。此方法通常用于 REST API，以删除不再需要的资源或撤销之前的操作。
+
+```jsx
+// HTTP DELETE example
+try {
+  const response = await axios.delete('/api/data/1');
+  console.log(response.data);
+} catch (error) {
+  console.error(error);
+}
+```
+
+CRUD 代表 Create, Read, Update, and Delete（增删改查）, 是可以在数据库或网络应用程序上执行的基本操作。用户可以通过这些操作创建新数据、读取现有数据、更新数据，并在必要时删除数据。
+
+## API Documentation
+
+API 文档提供有关 API 的所有必要信息，使开发人员能够有效地集成和使用API。
+
+[API 文档示例](https://documenter.getpostman.com/view/18152321/2s93RTSDLn)
 
 ## React Query
 
