@@ -5,16 +5,19 @@ import authFetch from '../utils';
 const Items = () => {
   const { isPending, data } = useQuery({
     queryKey: ['tasks'],
-    queryFn: () => authFetch.get('/'),
+    queryFn: async () => {
+      const { data } = await authFetch.get('/');
+      return data;
+    },
   });
 
-  if(isPending) {
-    return <p>Loading...</p>
+  if (isPending) {
+    return <p>Loading...</p>;
   }
 
   return (
     <div className="items">
-      {data.data.taskList.map((item) => {
+      {data.taskList.map((item) => {
         return <SingleItem key={item.id} {...item} />;
       })}
     </div>
