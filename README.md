@@ -19,6 +19,7 @@ Learn how to communicate with the server.
     - [Query Function](#query-function)
   - [Error Handling](#error-handling)
   - [Create Task](#create-task)
+  - [useMutation Helper Options](#usemutation-helper-options)
 - [VS Code Extension](#vs-code-extension)
 
 ## HTTP Methods
@@ -230,6 +231,22 @@ const handleSubmit = (e) => {
   e.preventDefault();
   createTask(newItemName);
 };
+```
+
+### useMutation Helper Options
+
+useMutation comes with some helper options that allow quick and easy side-effects at any stage during the mutation lifecycle. These come in handy for both invalidating and refetching queries after mutations
+
+```jsx
+const { mutate: createTask, isLoading } = useMutation({
+  mutationFn: (taskTitle) => customFetch.post('/', { title: taskTitle }),
+  onSuccess: () => {
+    // do something
+  },
+  onError: () => {
+    // do something
+  },
+});
 ```
 
 ## VS Code Extension
