@@ -192,3 +192,5 @@ const Items = () => {
 };
 export default Items;
 ```
+
+只有用 axios 才能获得 `{error.message}`，如果用的是 `fetch()`，错误信息不会在 `error` 属性里。

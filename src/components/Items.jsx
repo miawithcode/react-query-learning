@@ -3,16 +3,24 @@ import SingleItem from './SingleItem';
 import authFetch from '../utils';
 
 const Items = () => {
-  const { isPending, data } = useQuery({
+  const { isPending, data, isError, error } = useQuery({
     queryKey: ['tasks'],
     queryFn: async () => {
-      const { data } = await authFetch.get('/');
+      const { data } = await authFetch.get('/something');
       return data;
     },
   });
 
   if (isPending) {
     return <p>Loading...</p>;
+  }
+
+  // if(isError) {
+  //   return <p>There was an error...</p>;
+  // }
+
+  if(error) {
+    return <p>{error.message}</p>;
   }
 
   return (
