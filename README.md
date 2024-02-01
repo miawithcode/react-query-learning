@@ -1,23 +1,25 @@
-# React Query Learning
+<h1> React Query Learning </h1>
 
 Learn how to communicate with the server.
 
 <h2>Table Of Content</h2>
 
-- [React Query Learning](#react-query-learning)
-  - [HTTP Methods](#http-methods)
-    - [GET](#get)
-    - [POST](#post)
-    - [PATCH](#patch)
-    - [DELETE](#delete)
-  - [API Documentation](#api-documentation)
-  - [React Query](#react-query)
-    - [Install](#install)
-    - [Setup React Query](#setup-react-query)
-    - [First Query](#first-query)
-      - [Query Key](#query-key)
-      - [Query Function](#query-function)
-    - [Error Handling](#error-handling)
+- [HTTP Methods](#http-methods)
+  - [GET](#get)
+  - [POST](#post)
+  - [PATCH](#patch)
+  - [DELETE](#delete)
+- [API Documentation](#api-documentation)
+- [useEffect Approach](#useeffect-approach)
+- [React Query](#react-query)
+  - [Install](#install)
+  - [Setup React Query](#setup-react-query)
+  - [First Query](#first-query)
+    - [Query Key](#query-key)
+    - [Query Function](#query-function)
+  - [Error Handling](#error-handling)
+  - [Create Task](#create-task)
+- [VS Code Extension](#vs-code-extension)
 
 ## HTTP Methods
 
@@ -106,6 +108,23 @@ API 文档提供有关 API 的所有必要信息，使开发人员能够有效�
 
 [API 文档示例](https://documenter.getpostman.com/view/18152321/2s93RTSDLn)
 
+## useEffect Approach
+
+```jsx
+const fetchTasks = async () => {
+  try {
+    const response = await customFetch.get('/');
+    console.log(response.data);
+  } catch (error) {
+    +console.error(error);
+  }
+};
+
+useEffect(() => {
+  fetchTasks();
+}, []);
+```
+
 ## React Query
 
 > When working with server data, the biggest challenge is to keep your react app data, effectively react app state in sync with the server data. 在涉及服务器数据时，最大的挑战是让 react state 中的数据和服务器中的数据保持同步。
@@ -193,4 +212,26 @@ const Items = () => {
 export default Items;
 ```
 
-只有用 axios 才能获得 `{error.message}`，如果用的是 `fetch()`，错误信息不会在 `error` 属性里。
+只有用 axios 才能获得 `{error.message}`，如果用的是 `fetch()`，错误信息不会在 `error` 属性。
+
+### Create Task
+
+在表单中按下提交键时，和服务器交换数据。当涉及到创建、编辑、更新、删除数据时，要用到 `useMutation` hook。
+
+fetch => useQuery
+create, edit, delete => useMutation
+
+```jsx
+const { mutate: createTask, isLoading } = useMutation({
+  mutationFn: (taskTitle) => customFetch.post('/', { title: taskTitle }),
+});
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  createTask(newItemName);
+};
+```
+
+## VS Code Extension
+
+- Thunder Client - Test API endpoint directly in VS Code

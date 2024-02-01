@@ -6,7 +6,7 @@ const Items = () => {
   const { isPending, data, isError, error } = useQuery({
     queryKey: ['tasks'],
     queryFn: async () => {
-      const { data } = await authFetch.get('/something');
+      const { data } = await authFetch.get('/');
       return data;
     },
   });
